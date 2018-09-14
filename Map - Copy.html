@@ -5,7 +5,7 @@
     <title>Display a map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
-    <script src='./carguy.js'></script>
+    <script src='./trainguy.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
@@ -28,25 +28,35 @@ var map = new mapboxgl.Map({
 });
 
 
-map.on('load', function() {
-     map.addLayer({
-         "id": "data",
+var maptwo = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/basic-v9', // stylesheet location
+    center: [151.004105, -33.813002], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+    pitch: 45, 
+    bearing: -17.6, 
+});
+
+
+maptwo.on('load', function() {
+     maptwo.addLayer({
+         "id": "data2",
          "type": "fill-extrusion",
          "source": {
             'type': 'geojson',
-            'data': data
+            'data': data2
          },
         'paint': {
             'fill-extrusion-color' : {
-                'property': 'CarCSV2.0_Proportion',
+                'property': 'Train2_prop-train ',
                 "stops":[
                 [0, 'white'],
-                [1, 'blue']
+                [1, 'orange']
                 ]
 
          },
          'fill-extrusion-height' : {
-            'property': 'CarCSV2.0_Prp_Car_Drv',
+            'property': ' Train2_Trainv',
             "stops":[
             [0.1, 1],
             [1, 20000]
@@ -57,8 +67,6 @@ map.on('load', function() {
         }
     });
 });
-
-
 
 </script>
 

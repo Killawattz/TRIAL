@@ -59,6 +59,45 @@ map.on('load', function() {
 });
 
 
+var maptwo = new mapboxgl.Map({
+    container: 'map2', // container id
+    style: 'mapbox://styles/mapbox/basic-v9', // stylesheet location
+    center: [151.004105, -33.813002], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+    pitch: 45, 
+    bearing: -17.6, 
+});
+
+
+maptwo.on('load', function() {
+     maptwo.addLayer({
+         "id": "data2",
+         "type": "fill-extrusion",
+         "source": {
+            'type': 'geojson',
+            'data': data2
+         },
+        'paint': {
+            'fill-extrusion-color' : {
+                'property': 'Train2_prop-train ',
+                "stops":[
+                [0, 'white'],
+                [1, 'orange']
+                ]
+
+         },
+         'fill-extrusion-height' : {
+            'property': ' Train2_Trainv',
+            "stops":[
+            [0.1, 1],
+            [1, 20000]
+            ]
+
+        },
+        'fill-extrusion-opacity': 1
+        }
+    });
+});
 
 </script>
 
